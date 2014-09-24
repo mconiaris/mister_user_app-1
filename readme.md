@@ -46,7 +46,7 @@ When invoked it should:
 Create a module called `RandomUser` with a module method called fetch
 that performs the `HTTParty` request and returns the random user data.
 
-Store your module in a `/lib` folder
+Store your module in a `/lib` folder at the root of your project
 
 Update `config/boot.rb` to load up all the files inside `lib`
 
@@ -61,6 +61,10 @@ In your `User` model create predicate methods for:
 - `ms?`
 - `miss?`
 - `mrs?`
+
+The following predicate methods will rely on the `dob` column.
+Check ruby's `Time.at` method
+
 - `adult?` over 18
 - `boomer?` born between 1946 and 1964
 - `teen?` if between 13 and 18
@@ -106,3 +110,7 @@ in session and redirect to their show page.
 If a user enters the wrong password information redirect them back to the 
 login page and use rack-flash to display a message that they entered the 
 wrong information.
+
+## git checkout -b update_user_page
+
+Once a user is logged in and redirected to their show page display an "update profile" link to take them to an edit form to add additional information to their profile.
