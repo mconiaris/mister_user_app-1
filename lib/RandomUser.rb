@@ -1,1 +1,7 @@
-RandomUser.rb
+module RandomUser
+
+  def fetch
+
+  end
+
+end
