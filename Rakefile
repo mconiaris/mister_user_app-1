@@ -88,4 +88,29 @@ namespace :db do
     Rake::Task['environment'].invoke(env)
     require './db/seeds'
   end
+
+  desc "seed_random_users"
+    task :seed_random_users do |cmd, args|
+    env = args[:env] || ENV["RACK_ENV"] || "development"
+    Rake::Task['environment'].invoke(env)
+    counter = 0
+    while counter < 10 do
+      new_entry = HTTParty.get("http://api.randomuser.me/")
+      User.create(
+        email:      new_entry["results"][0]["user"]["email"],
+        name:         "#{new_entry["results"][0]["user"]["name"]["title"].capitalize} " +
+                      "#{new_entry["results"][0]["user"]["name"]["first"].capitalize} " +
+                      "#{new_entry["results"][0]["user"]["name"]["last"].capitalize}",
+        gender:     new_entry["results"][0]["user"]["gender"],
+        picture:    new_entry["results"][0]["user"]["picture"]["thumbnail"],
+        dob:        new_entry["results"][0]["user"]["dob"],
+        phone:      new_entry["results"][0]["user"]["phone"],
+        location:   new_entry["results"][0]["user"]["location"],
+        password:   new_entry["results"][0]["user"]["password"]
+      )
+      counter += 1
+    end
+  end
+  puts "Ten users were created."
+      # binding.pry
 end
