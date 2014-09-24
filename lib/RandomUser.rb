@@ -1,6 +1,6 @@
 module RandomUser
 
-  def fetch
+  def self.fetch
     HTTParty.get("http://api.randomuser.me/")
   end
 
