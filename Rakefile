@@ -95,7 +95,7 @@ namespace :db do
     Rake::Task['environment'].invoke(env)
     counter = 0
     while counter < 10 do
-      new_entry = HTTParty.get("http://api.randomuser.me/")
+      new_entry = RandomUser.fetch
       User.create(
         email:      new_entry["results"][0]["user"]["email"],
         name:         "#{new_entry["results"][0]["user"]["name"]["title"].capitalize} " +
