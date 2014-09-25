@@ -12,5 +12,9 @@ class User < Sequel::Model
     self[:gender] == "female"
   end
 
+  def mr?
+
+  end
+
     # binding.pry
 end

@@ -98,14 +98,17 @@ namespace :db do
       new_entry = RandomUser.fetch
       User.create(
         email:      new_entry["results"][0]["user"]["email"],
-        name:         "#{new_entry["results"][0]["user"]["name"]["title"].capitalize} " +
-                      "#{new_entry["results"][0]["user"]["name"]["first"].capitalize} " +
-                      "#{new_entry["results"][0]["user"]["name"]["last"].capitalize}",
-        gender:     new_entry["results"][0]["user"]["gender"],
-        picture:    new_entry["results"][0]["user"]["picture"]["thumbnail"],
-        dob:        new_entry["results"][0]["user"]["dob"],
-        phone:      new_entry["results"][0]["user"]["phone"],
-        location:   new_entry["results"][0]["user"]["location"],
+        title_name:   new_entry["results"][0]["user"]["name"]["title"].capitalize,
+        first_name:   new_entry["results"][0]["user"]["name"]["first"].capitalize,
+        last_name:    new_entry["results"][0]["user"]["name"]["last"].capitalize,
+        gender:       new_entry["results"][0]["user"]["gender"],
+        picture:      new_entry["results"][0]["user"]["picture"]["thumbnail"],
+        dob:          new_entry["results"][0]["user"]["dob"],
+        phone:        new_entry["results"][0]["user"]["phone"],
+        street:       new_entry["results"][0]["user"]["location"]["street"],
+        city:         new_entry["results"][0]["user"]["location"]["city"],
+        state:        new_entry["results"][0]["user"]["location"]["state"],
+        zip:          new_entry["results"][0]["user"]["location"]["zip"],
         password:   new_entry["results"][0]["user"]["password"]
       )
       counter += 1
