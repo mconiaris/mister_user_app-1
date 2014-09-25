@@ -34,27 +34,31 @@ class User < Sequel::Model
   end
 
   def adult?
-    (Time.new.year - year_conversion.year) > 18
+    (Time.new.year - year_conversion.year) >= 18
   end
 
   def boomer?
-
+    year_conversion.year =< 1946 &&
+      year_conversion.year >= 1964
   end
 
   def teen?
-
+    (Time.new.year - year_conversion.year) >= 13 &&
+      (Time.new.year - year_conversion.year) =< 18
   end
 
   def child?
-
+    (Time.new.year - year_conversion.year) == 11 ||
+      (Time.new.year - year_conversion.year) == 12
   end
 
   def toddler?
-
+    (Time.new.year - year_conversion.year) >= 4 &&
+      (Time.new.year - year_conversion.year) <= 10
   end
 
   def baby?
-
+    (Time.new.year - year_conversion.year) <= 3
   end
     binding.pry
 
