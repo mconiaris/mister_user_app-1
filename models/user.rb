@@ -13,8 +13,20 @@ class User < Sequel::Model
   end
 
   def mr?
-
+    self[:title_name] == "Mr"
   end
 
-    # binding.pry
+  def ms?
+    self[:title_name] == "Ms"
+  end
+
+  def miss?
+    self[:title_name] == "Miss"
+  end
+
+  def mrs?
+    self[:title_name] == "Mrs"
+  end
+    binding.pry
+
 end
